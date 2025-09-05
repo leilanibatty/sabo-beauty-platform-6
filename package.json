@@ -1,0 +1,14 @@
+{
+  "name": "SABO Beauty Platform 6",
+  "version": "1.0.0",
+  "description": "Generated MVP application",
+  "private": false,
+  "scripts": {
+    "start": "serve -s .",
+    "build": "echo \"No build step needed for static app\"",
+    "deploy": "echo \"Deploy to hosting platform\""
+  },
+  "dependencies": {
+    "serve": "^14.0.0"
+  }
+}
