@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SABO AI-Native Beauty Commerce Platform 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.3.1?pin=v133",
+        "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?pin=v133",
+        "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime?pin=v133",
+        "scheduler": "https://esm.sh/scheduler@0.23.2?pin=v133"
+      }
+    }
+    </script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; }
+        .screen-container { min-height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="module">
+        console.log('PREVIEW BOOT'); // Debug log as suggested
+        var __defProp = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
+// App.tsx
+import React4, { useState as useState4 } from "react";
+import { createRoot } from "react-dom/client";
+
+// virtual:virtual:/screens/user-authentication-screen.tsx
+var user_authentication_screen_exports = {};
+__export(user_authentication_screen_exports, {
+  SABOAuthScreen: () => SABOAuthScreen
+});
+import { useEffect, useState } from "react";
+import { jsx, jsxs } from "react/jsx-runtime";
+function SABOAuthScreen() {
+  const [mode, setMode] = useState("signin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null);
+  useEffect(() => {
+    setMessage(null);
+    setPassword("");
+  }, [mode]);
+  const providers = [
+    { id: "apple", label: "Continue with Apple" },
+    { id: "google", label: "Continue with Google" }
+  ];
+  const validate = () => {
+    if (!email || !email.includes("@")) return "Please enter a valid email address.";
+    if (mode === "signup" && fullName.trim().length < 2) return "Please enter your full name.";
+    if (mode !== "reset" && password.length < 6) return "Password must be at least 6 characters.";
+    return null;
+  };
+  const simulateRequest = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage(null);
+    const error = validate();
+    if (error) {
+      setMessage({ type: "error", text: error });
+      return;
+    }
+    try {
+      setLoading(true);
+      await simulateRequest(900);
+      if (mode === "signin") {
+        setMessage({ type: "success", text: "Welcome back. You are now signed in." });
+      } else if (mode === "signup") {
+        setMessage({ type: "success", text: "Account created. You are now signed in." });
+      } else {
+        setMessage({ type: "success", text: "Password reset email has been sent." });
+      }
+    } catch (_err) {
+      setMessage({ type: "error", text: "Something went wrong. Please try again." });
+    } finally {
+      setLoading(false);
+    }
+  };
+  const onSocialClick = async ({ id, label }) => {
+    setMessage(null);
+    setLoading(true);
+    await simulateRequest(700);
+    setLoading(false);
+    setMessage({ type: "info", text: `${label} is coming soon.` });
+  };
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-gradient-to-b from-white via-white to-slate-50 text-slate-800", children: [
+    /* @__PURE__ */ jsx("header", { className: "sticky top-0 z-10 bg-white/70 backdrop-blur border-b border-slate-100", children: /* @__PURE__ */ jsxs("div", { className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsx("div", { className: "h-8 w-8 rounded-full bg-gradient-to-br from-fuchsia-500 to-rose-500 shadow-sm", "aria-hidden": "true" }),
+        /* @__PURE__ */ jsx("span", { className: "text-xl font-semibold tracking-tight", children: "SABO Beauty" })
+      ] }),
+      /* @__PURE__ */ jsxs("nav", { "aria-label": "Primary", className: "hidden sm:flex items-center gap-6 text-sm text-slate-500", children: [
+        /* @__PURE__ */ jsx("a", { href: "#", className: "hover:text-slate-900", children: "About" }),
+        /* @__PURE__ */ jsx("a", { href: "#", className: "hover:text-slate-900", children: "For Salons" }),
+        /* @__PURE__ */ jsx("a", { href: "#", className: "hover:text-slate-900", children: "Support" })
+      ] })
+    ] }) }),
+    /* @__PURE__ */ jsx("main", { className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10", children: /* @__PURE__ */ jsxs("section", { className: "grid lg:grid-cols-2 gap-10 items-stretch", children: [
+      /* @__PURE__ */ jsx("div", { className: "order-2 lg:order-1", children: /* @__PURE__ */ jsxs("div", { className: "bg-white/80 backdrop-blur rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8", children: [
+        /* @__PURE__ */ jsxs("h1", { className: "text-2xl sm:text-3xl font-semibold tracking-tight", children: [
+          mode === "signin" && "Sign in to your account",
+          mode === "signup" && "Create your SABO account",
+          mode === "reset" && "Reset your password"
+        ] }),
+        /* @__PURE__ */ jsxs("p", { className: "mt-2 text-sm text-slate-500", children: [
+          mode === "signin" && "Welcome back to the AI-native beauty commerce experience.",
+          mode === "signup" && "Join the community that elevates manicures and nail art.",
+          mode === "reset" && "Enter your email to receive a secure reset link."
+        ] }),
+        /* @__PURE__ */ jsxs("form", { onSubmit: handleSubmit, className: "mt-6 space-y-5", "aria-busy": loading, "aria-live": "polite", children: [
+          mode === "signup" && /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("label", { htmlFor: "fullName", className: "block text-sm font-medium text-slate-700", children: "Full name" }),
+            /* @__PURE__ */ jsx(
+              "input",
+              {
+                id: "fullName",
+                name: "fullName",
+                type: "text",
+                autoComplete: "name",
+                value: fullName,
+                onChange: (e) => setFullName(e.target.value),
+                className: "mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-100 outline-none",
+                placeholder: "Alex Taylor"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("label", { htmlFor: "email", className: "block text-sm font-medium text-slate-700", children: "Email" }),
+            /* @__PURE__ */ jsx(
+              "input",
+              {
+                id: "email",
+                name: "email",
+                type: "email",
+                autoComplete: "email",
+                value: email,
+                onChange: (e) => setEmail(e.target.value),
+                className: "mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-100 outline-none",
+                placeholder: "you@example.com",
+                required: true
+              }
+            )
+          ] }),
+          mode !== "reset" && /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
+              /* @__PURE__ */ jsx("label", { htmlFor: "password", className: "block text-sm font-medium text-slate-700", children: "Password" }),
+              mode === "signin" && /* @__PURE__ */ jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => setMode("reset"),
+                  className: "text-xs text-slate-500 hover:text-slate-900",
+                  children: "Forgot password?"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "mt-2 relative", children: [
+              /* @__PURE__ */ jsx(
+                "input",
+                {
+                  id: "password",
+                  name: "password",
+                  type: showPassword ? "text" : "password",
+                  autoComplete: mode === "signin" ? "current-password" : "new-password",
+                  value: password,
+                  onChange: (e) => setPassword(e.target.value),
+                  className: "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 pr-12 text-slate-900 placeholder-slate-400 shadow-sm focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-100 outline-none",
+                  placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+                  required: true
+                }
+              ),
+              /* @__PURE__ */ jsx(
+                "button",
+                {
+                  type: "button",
+                  "aria-label": showPassword ? "Hide password" : "Show password",
+                  onClick: () => setShowPassword((v) => !v),
+                  className: "absolute inset-y-0 right-2 my-1 px-3 inline-flex items-center rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-50",
+                  children: showPassword ? "Hide" : "Show"
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs(
+            "button",
+            {
+              type: "submit",
+              disabled: loading,
+              className: "w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-fuchsia-600 to-rose-500 text-white font-medium py-3 shadow-sm hover:shadow transition disabled:opacity-60",
+              children: [
+                loading && /* @__PURE__ */ jsx("span", { className: "mr-2 h-4 w-4 border-2 border-white/60 border-t-transparent rounded-full animate-spin", "aria-hidden": "true" }),
+                mode === "signin" && "Sign In",
+                mode === "signup" && "Create Account",
+                mode === "reset" && "Send Reset Link"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxs("div", { className: "relative", children: [
+            /* @__PURE__ */ jsx("div", { className: "absolute inset-0 flex items-center", "aria-hidden": "true", children: /* @__PURE__ */ jsx("div", { className: "w-full border-t border-slate-200" }) }),
+            /* @__PURE__ */ jsx("div", { className: "relative flex justify-center", children: /* @__PURE__ */ jsx("span", { className: "bg-white px-3 text-xs text-slate-500", children: "or" }) })
+          ] }),
+          /* @__PURE__ */ jsx("div", { className: "grid sm:grid-cols-2 gap-3", children: providers.map(({ id, label }) => /* @__PURE__ */ jsx(
+            "button",
+            {
+              type: "button",
+              onClick: () => onSocialClick({ id, label }),
+              className: "w-full rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 py-3 font-medium shadow-sm",
+              children: label
+            },
+            id
+          )) }),
+          /* @__PURE__ */ jsxs("p", { className: "text-xs text-slate-500 text-center", children: [
+            "By continuing, you agree to our ",
+            /* @__PURE__ */ jsx("a", { href: "#", className: "underline hover:text-slate-900", children: "Terms" }),
+            " and ",
+            /* @__PURE__ */ jsx("a", { href: "#", className: "underline hover:text-slate-900", children: "Privacy Policy" }),
+            "."
+          ] }),
+          message && /* @__PURE__ */ jsx(
+            "div",
+            {
+              role: "status",
+              className: `rounded-xl px-4 py-3 text-sm border ${message.type === "error" ? "bg-rose-50 text-rose-700 border-rose-200" : message.type === "success" ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-slate-50 text-slate-700 border-slate-200"}`,
+              children: message.text
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "mt-6 text-sm text-slate-600 text-center", children: [
+          mode === "signin" && /* @__PURE__ */ jsx("button", { onClick: () => setMode("signup"), className: "hover:text-slate-900", children: "New to SABO? Create an account" }),
+          mode === "signup" && /* @__PURE__ */ jsx("button", { onClick: () => setMode("signin"), className: "hover:text-slate-900", children: "Already have an account? Sign in" }),
+          mode === "reset" && /* @__PURE__ */ jsx("button", { onClick: () => setMode("signin"), className: "hover:text-slate-900", children: "Back to sign in" })
+        ] })
+      ] }) }),
+      /* @__PURE__ */ jsx("aside", { className: "order-1 lg:order-2", children: /* @__PURE__ */ jsxs("div", { className: "relative overflow-hidden rounded-3xl border border-slate-100 bg-gradient-to-br from-fuchsia-50 to-rose-50 p-8 h-full flex flex-col justify-between shadow-sm", children: [
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx("h2", { className: "text-3xl sm:text-4xl font-semibold tracking-tight", children: "AI\u2011Native Beauty Commerce" }),
+          /* @__PURE__ */ jsx("p", { className: "mt-3 text-slate-600 max-w-prose", children: "Experience virtual nail try\u2011on, premium salon discovery, and effortless booking in a platform designed for modern beauty." }),
+          /* @__PURE__ */ jsx("ul", { className: "mt-6 space-y-3 text-slate-700", children: [
+            { id: "vto", text: "Real\u2011time virtual nail style try\u2011on with true\u2011to\u2011life finishes." },
+            { id: "local", text: "Discover trusted local salons with verified reviews." },
+            { id: "secure", text: "Secure checkout and encrypted account protection." }
+          ].map(({ id, text }) => /* @__PURE__ */ jsxs("li", { className: "flex items-start gap-3", children: [
+            /* @__PURE__ */ jsx("span", { className: "mt-1 h-2 w-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-rose-500", "aria-hidden": "true" }),
+            /* @__PURE__ */ jsx("span", { className: "text-sm", children: text })
+          ] }, id)) })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "mt-10", children: /* @__PURE__ */ jsxs("div", { className: "relative h-40 sm:h-56 w-full rounded-2xl bg-white shadow-inner border border-slate-100 flex items-center justify-center overflow-hidden", children: [
+          /* @__PURE__ */ jsx("div", { className: "absolute h-64 w-64 rounded-full bg-gradient-to-tr from-fuchsia-300/30 to-rose-300/30 blur-2xl -top-16 -right-16", "aria-hidden": "true" }),
+          /* @__PURE__ */ jsx("div", { className: "absolute h-64 w-64 rounded-full bg-gradient-to-tr from-rose-300/30 to-fuchsia-300/30 blur-2xl -bottom-16 -left-16", "aria-hidden": "true" }),
+          /* @__PURE__ */ jsx("div", { className: "relative flex items-center gap-2", children: ["#111827", "#f43f5e", "#a855f7", "#0ea5e9", "#f59e0b"].map((hex, idx) => /* @__PURE__ */ jsx("span", { className: `h-8 w-8 sm:h-10 sm:w-10 rounded-full shadow ${idx === 1 ? "ring-2 ring-rose-400" : "ring-0"}`, style: { backgroundColor: hex }, "aria-hidden": "true" }, hex)) })
+        ] }) })
+      ] }) })
+    ] }) }),
+    /* @__PURE__ */ jsxs("footer", { className: "py-10 text-center text-xs text-slate-500", children: [
+      "\xA9 ",
+      (/* @__PURE__ */ new Date()).getFullYear(),
+      " SABO Beauty. All rights reserved."
+    ] })
+  ] });
+}
+
+// virtual:virtual:/screens/virtual-nail-style-try-on-screen.tsx
+var virtual_nail_style_try_on_screen_exports = {};
+__export(virtual_nail_style_try_on_screen_exports, {
+  SABOVirtualTryOn: () => SABOVirtualTryOn
+});
+import { useEffect as useEffect2, useMemo, useState as useState2 } from "react";
+import { jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
+function SABOVirtualTryOn() {
+  const [selectedColor, setSelectedColor] = useState2(null);
+  const [selectedShape, setSelectedShape] = useState2({ id: "almond", name: "Almond", roundness: 16 });
+  const [selectedPattern, setSelectedPattern] = useState2({ id: "none", name: "None" });
+  const [skinTone, setSkinTone] = useState2("#f5e6da");
+  const [loading, setLoading] = useState2(false);
+  const [message, setMessage] = useState2(null);
+  const colors = [
+    { id: "rose", name: "Rose", hex: "#f43f5e" },
+    { id: "orchid", name: "Orchid", hex: "#a855f7" },
+    { id: "nude", name: "Nude", hex: "#e9c8b2" },
+    { id: "onyx", name: "Onyx", hex: "#111827" },
+    { id: "ocean", name: "Ocean", hex: "#0ea5e9" },
+    { id: "sunset", name: "Sunset", hex: "#f59e0b" }
+  ];
+  const shapes = [
+    { id: "almond", name: "Almond", roundness: 16 },
+    { id: "oval", name: "Oval", roundness: 12 },
+    { id: "square", name: "Square", roundness: 4 }
+  ];
+  const patterns = [
+    { id: "none", name: "None" },
+    { id: "dots", name: "Dots" },
+    { id: "stripes", name: "Stripes" }
+  ];
+  const skinTones = ["#f8ece4", "#f5e6da", "#e9d2c0", "#d6b296", "#b98b67", "#8a5a3d"];
+  useEffect2(() => {
+    setLoading(true);
+    const t = setTimeout(() => setLoading(false), 350);
+    return () => clearTimeout(t);
+  }, [selectedColor, selectedShape, selectedPattern, skinTone]);
+  const saveLook = async () => {
+    setMessage(null);
+    if (!selectedColor) {
+      setMessage({ type: "error", text: "Pick a color to save your look." });
+      return;
+    }
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 600));
+    setLoading(false);
+    setMessage({ type: "success", text: "Look saved to your favorites." });
+  };
+  const nailRects = useMemo(() => {
+    return [
+      { x: 30, y: 30, w: 36, h: 56 },
+      { x: 80, y: 22, w: 40, h: 64 },
+      { x: 134, y: 18, w: 42, h: 68 },
+      { x: 190, y: 24, w: 40, h: 62 },
+      { x: 242, y: 34, w: 36, h: 54 }
+    ];
+  }, []);
+  return /* @__PURE__ */ jsxs2("div", { className: "min-h-screen bg-white text-slate-800", children: [
+    /* @__PURE__ */ jsx2("header", { className: "border-b border-slate-100 bg-white/70 backdrop-blur sticky top-0 z-10", children: /* @__PURE__ */ jsxs2("div", { className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxs2("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsx2("div", { className: "h-8 w-8 rounded-full bg-gradient-to-br from-fuchsia-500 to-rose-500 shadow-sm", "aria-hidden": "true" }),
+        /* @__PURE__ */ jsx2("span", { className: "text-xl font-semibold tracking-tight", children: "SABO Try\u2011On" })
+      ] }),
+      /* @__PURE__ */ jsxs2("div", { className: "hidden sm:flex items-center gap-3 text-sm text-slate-500", children: [
+        /* @__PURE__ */ jsx2("span", { className: "hidden md:inline", children: "True\u2011to\u2011life preview" }),
+        /* @__PURE__ */ jsx2("span", { className: "h-1 w-1 rounded-full bg-slate-300", "aria-hidden": "true" }),
+        /* @__PURE__ */ jsx2("span", { children: "AI\u2011Native" })
+      ] })
+    ] }) }),
+    /* @__PURE__ */ jsx2("main", { className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8", children: /* @__PURE__ */ jsxs2("section", { className: "grid lg:grid-cols-12 gap-8", children: [
+      /* @__PURE__ */ jsx2("aside", { className: "lg:col-span-4 order-2 lg:order-1", children: /* @__PURE__ */ jsxs2("div", { className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-6", children: [
+        /* @__PURE__ */ jsxs2("div", { children: [
+          /* @__PURE__ */ jsx2("h2", { className: "text-lg font-semibold", children: "Color" }),
+          /* @__PURE__ */ jsx2("div", { className: "mt-3 grid grid-cols-6 gap-3", children: colors.map(({ id, name, hex }) => /* @__PURE__ */ jsx2(
+            "button",
+            {
+              type: "button",
+              "aria-label": name,
+              onClick: () => setSelectedColor({ id, name, hex }),
+              className: `h-10 w-10 rounded-full border ${selectedColor && selectedColor.id === id ? "ring-2 ring-fuchsia-400 border-transparent" : "border-slate-200"} shadow-sm`,
+              style: { backgroundColor: hex }
+            },
+            id
+          )) })
+        ] }),
+        /* @__PURE__ */ jsxs2("div", { children: [
+          /* @__PURE__ */ jsx2("h2", { className: "text-lg font-semibold", children: "Shape" }),
+          /* @__PURE__ */ jsx2("div", { className: "mt-3 grid grid-cols-3 gap-2", children: shapes.map(({ id, name, roundness }) => /* @__PURE__ */ jsx2(
+            "button",
+            {
+              type: "button",
+              onClick: () => setSelectedShape({ id, name, roundness }),
+              className: `rounded-xl border px-3 py-2 text-sm ${selectedShape.id === id ? "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-700" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`,
+              children: name
+            },
+            id
+          )) })
+        ] }),
+        /* @__PURE__ */ jsxs2("div", { children: [
+          /* @__PURE__ */ jsx2("h2", { className: "text-lg font-semibold", children: "Pattern" }),
+          /* @__PURE__ */ jsx2("div", { className: "mt-3 grid grid-cols-3 gap-2", children: patterns.map(({ id, name }) => /* @__PURE__ */ jsx2(
+            "button",
+            {
+              type: "button",
+              onClick: () => setSelectedPattern({ id, name }),
+              className: `rounded-xl border px-3 py-2 text-sm ${selectedPattern.id === id ? "border-rose-300 bg-rose-50 text-rose-700" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`,
+              children: name
+            },
+            id
+          )) })
+        ] }),
+        /* @__PURE__ */ jsxs2("div", { children: [
+          /* @__PURE__ */ jsx2("h2", { className: "text-lg font-semibold", children: "Skin tone" }),
+          /* @__PURE__ */ jsx2("div", { className: "mt-3 flex flex-wrap gap-3", children: skinTones.map((hex) => /* @__PURE__ */ jsx2(
+            "button",
+            {
+              type: "button",
+              "aria-label": `Skin tone ${hex}`,
+              onClick: () => setSkinTone(hex),
+              className: `h-8 w-8 rounded-full border ${skinTone === hex ? "ring-2 ring-rose-300 border-transparent" : "border-slate-200"} shadow-sm`,
+              style: { backgroundColor: hex }
+            },
+            hex
+          )) })
+        ] }),
+        /* @__PURE__ */ jsxs2("div", { className: "pt-2 grid grid-cols-2 gap-3", children: [
+          /* @__PURE__ */ jsx2(
+            "button",
+            {
+              type: "button",
+              onClick: saveLook,
+              disabled: loading,
+              className: "rounded-xl bg-gradient-to-r from-fuchsia-600 to-rose-500 text-white font-medium py-3 shadow-sm hover:shadow transition disabled:opacity-60",
+              children: loading ? "Saving\u2026" : "Save Look"
+            }
+          ),
+          /* @__PURE__ */ jsx2(
+            "button",
+            {
+              type: "button",
+              "aria-disabled": true,
+              className: "rounded-xl border border-slate-200 bg-white text-slate-700 font-medium py-3 shadow-sm hover:bg-slate-50",
+              children: "Try with Camera"
+            }
+          )
+        ] }),
+        message && /* @__PURE__ */ jsx2("div", { className: `rounded-xl px-4 py-3 text-sm border ${message.type === "error" ? "bg-rose-50 text-rose-700 border-rose-200" : message.type === "success" ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-slate-50 text-slate-700 border-slate-200"}`, children: message.text })
+      ] }) }),
+      /* @__PURE__ */ jsx2("section", { className: "lg:col-span-8 order-1 lg:order-2", children: /* @__PURE__ */ jsxs2("div", { className: "relative bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6", children: [
+        /* @__PURE__ */ jsxs2("div", { className: "flex items-center justify-between mb-4", children: [
+          /* @__PURE__ */ jsx2("h2", { className: "text-lg font-semibold", children: "Preview" }),
+          loading && /* @__PURE__ */ jsxs2("div", { className: "inline-flex items-center text-sm text-slate-500", role: "status", "aria-live": "polite", children: [
+            /* @__PURE__ */ jsx2("span", { className: "mr-2 h-3 w-3 border-2 border-slate-300 border-t-transparent rounded-full animate-spin", "aria-hidden": "true" }),
+            "Rendering\u2026"
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs2("div", { className: "relative aspect-[4/3] w-full rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-100 overflow-hidden", children: [
+          /* @__PURE__ */ jsxs2("svg", { viewBox: "0 0 300 225", role: "img", "aria-label": "Nail try-on preview", className: "h-full w-full", children: [
+            /* @__PURE__ */ jsxs2("defs", { children: [
+              /* @__PURE__ */ jsxs2("pattern", { id: "stripePattern", patternUnits: "userSpaceOnUse", width: "8", height: "8", patternTransform: "rotate(25)", children: [
+                /* @__PURE__ */ jsx2("rect", { x: "0", y: "0", width: "8", height: "8", fill: "transparent" }),
+                /* @__PURE__ */ jsx2("rect", { x: "0", y: "0", width: "2", height: "8", fill: "rgba(255,255,255,0.35)" })
+              ] }),
+              /* @__PURE__ */ jsxs2("pattern", { id: "dotPattern", patternUnits: "userSpaceOnUse", width: "10", height: "10", children: [
+                /* @__PURE__ */ jsx2("rect", { x: "0", y: "0", width: "10", height: "10", fill: "transparent" }),
+                /* @__PURE__ */ jsx2("circle", { cx: "3", cy: "3", r: "1.5", fill: "rgba(255,255,255,0.35)" })
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxs2("g", { children: [
+              /* @__PURE__ */ jsx2("ellipse", { cx: "150", cy: "180", rx: "120", ry: "40", fill: "#e2e8f0", opacity: "0.35" }),
+              /* @__PURE__ */ jsx2("rect", { x: "55", y: "90", width: "190", height: "80", rx: "40", fill: skinTone })
+            ] }),
+            /* @__PURE__ */ jsx2("g", { children: nailRects.map(({ x, y, w, h }, idx) => {
+              const rx = selectedShape.roundness;
+              const fill = selectedColor ? selectedColor.hex : "transparent";
+              const patternId = selectedPattern.id === "stripes" ? "stripePattern" : selectedPattern.id === "dots" ? "dotPattern" : "";
+              return /* @__PURE__ */ jsxs2("g", { children: [
+                /* @__PURE__ */ jsx2("rect", { x, y, width: w, height: h, rx, fill, stroke: "#e5e7eb", strokeWidth: 1 }),
+                selectedPattern.id !== "none" && /* @__PURE__ */ jsx2("rect", { x, y, width: w, height: h, rx, fill: `url(#${patternId})`, opacity: 0.8 }),
+                selectedColor && /* @__PURE__ */ jsx2("ellipse", { cx: x + w * 0.6, cy: y + h * 0.25, rx: w * 0.2, ry: h * 0.15, fill: "#ffffff", opacity: 0.22 })
+              ] }, `nail-${idx}`);
+            }) })
+          ] }),
+          !selectedColor && !loading && /* @__PURE__ */ jsx2("div", { className: "absolute inset-0 flex items-center justify-center", children: /* @__PURE__ */ jsx2("div", { className: "rounded-xl bg-white/80 backdrop-blur px-4 py-3 text-sm text-slate-600 border border-slate-200", children: "Choose a color to start your try\u2011on." }) })
+        ] }),
+        /* @__PURE__ */ jsxs2("div", { className: "mt-4 flex flex-wrap items-center justify-between gap-3", children: [
+          /* @__PURE__ */ jsx2("p", { className: "text-sm text-slate-500", children: "Tip: Use stripes or dots to preview nail art overlays." }),
+          /* @__PURE__ */ jsxs2("div", { className: "flex items-center gap-2 text-xs text-slate-500", children: [
+            /* @__PURE__ */ jsx2("span", { className: "h-2 w-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-rose-500", "aria-hidden": "true" }),
+            "SABO AI\u2011Native Preview"
+          ] })
+        ] })
+      ] }) })
+    ] }) })
+  ] });
+}
+
+// virtual:virtual:/screens/browse-local-salons-screen.tsx
+var browse_local_salons_screen_exports = {};
+__export(browse_local_salons_screen_exports, {
+  SABOBrowseSalons: () => SABOBrowseSalons
+});
+import { useEffect as useEffect3, useMemo as useMemo2, useState as useState3 } from "react";
+import { jsx as jsx3, jsxs as jsxs3 } from "react/jsx-runtime";
+function SABOBrowseSalons() {
+  const [location, setLocation] = useState3(null);
+  const [loadingLocation, setLoadingLocation] = useState3(false);
+  const [loadingSalons, setLoadingSalons] = useState3(false);
+  const [error, setError] = useState3(null);
+  const [salons, setSalons] = useState3([]);
+  const [filters, setFilters] = useState3({ query: "", services: [], minRating: 0, maxDistanceKm: 10, priceLevel: null });
+  const allServices = ["Manicure", "Gel", "Acrylic", "Nail Art", "Pedicure"];
+  const requestLocation = async () => {
+    setError(null);
+    setLoadingLocation(true);
+    try {
+      if (typeof window !== "undefined" && "geolocation" in navigator) {
+        await new Promise((resolve) => {
+          navigator.geolocation.getCurrentPosition(
+            ({ coords }) => {
+              const { latitude, longitude } = coords;
+              setLocation({ lat: latitude, lng: longitude });
+              resolve();
+            },
+            () => {
+              setLocation({ lat: 37.7749, lng: -122.4194 });
+              resolve();
+            },
+            { enableHighAccuracy: true, timeout: 3e3 }
+          );
+        });
+      } else {
+        setLocation({ lat: 34.0522, lng: -118.2437 });
+      }
+    } finally {
+      setLoadingLocation(false);
+    }
+  };
+  const fetchSalons = async () => {
+    if (!location) return;
+    setError(null);
+    setLoadingSalons(true);
+    await new Promise((r) => setTimeout(r, 900));
+    const shouldFail = Math.random() < 0.08;
+    if (shouldFail) {
+      setError("Network error. Please try again.");
+      setLoadingSalons(false);
+      return;
+    }
+    const sample = [
+      { id: "s1", name: "Polish & Co.", rating: 4.7, distanceKm: 1.2, priceLevel: 2, services: ["Manicure", "Gel", "Nail Art"], address: "210 Market St", isOpen: true },
+      { id: "s2", name: "Gilded Nails", rating: 4.9, distanceKm: 2.8, priceLevel: 3, services: ["Manicure", "Acrylic", "Nail Art", "Pedicure"], address: "88 Union Ave", isOpen: true },
+      { id: "s3", name: "Lacquer Lab", rating: 4.4, distanceKm: 4.3, priceLevel: 2, services: ["Manicure", "Gel", "Pedicure"], address: "14 Grove Pl", isOpen: false },
+      { id: "s4", name: "Studio Cuticle", rating: 4.2, distanceKm: 6.1, priceLevel: 1, services: ["Manicure"], address: "501 Elm Rd", isOpen: true },
+      { id: "s5", name: "Aura Nails", rating: 5, distanceKm: 3.5, priceLevel: 4, services: ["Manicure", "Gel", "Acrylic", "Nail Art"], address: "72 Sunset Blvd", isOpen: true }
+    ];
+    setSalons(sample);
+    setLoadingSalons(false);
+  };
+  useEffect3(() => {
+    const t = setTimeout(() => {
+      if (!location) void requestLocation();
+    }, 400);
+    return () => clearTimeout(t);
+  }, [location]);
+  useEffect3(() => {
+    if (location) void fetchSalons();
+  }, [location]);
+  const toggleService = (service) => {
+    setFilters((prev) => {
+      const has = prev.services.includes(service);
+      const next = has ? prev.services.filter((s) => s !== service) : [...prev.services, service];
+      return { ...prev, services: next };
+    });
+  };
+  const filteredSalons = useMemo2(() => {
+    const { query, services, minRating, maxDistanceKm, priceLevel } = filters;
+    return salons.filter(({ name, rating, distanceKm, priceLevel: p, services: svc }) => {
+      const matchesQuery = !query || name.toLowerCase().includes(query.toLowerCase());
+      const matchesServices = services.length === 0 || services.every((s) => svc.includes(s));
+      const matchesRating = rating >= minRating;
+      const matchesDistance = maxDistanceKm == null || distanceKm <= maxDistanceKm;
+      const matchesPrice = priceLevel == null || p === priceLevel;
+      return matchesQuery && matchesServices && matchesRating && matchesDistance && matchesPrice;
+    });
+  }, [filters, salons]);
+  const Stars = ({ value }) => {
+    const full = Math.floor(value);
+    const half = value - full >= 0.5;
+    const stars = Array.from({ length: 5 }).map((_, i) => {
+      const filled = i < full || i === full && half;
+      return /* @__PURE__ */ jsx3("svg", { viewBox: "0 0 20 20", className: `h-4 w-4 ${filled ? "fill-amber-400" : "fill-slate-200"}`, "aria-hidden": "true", children: /* @__PURE__ */ jsx3("path", { d: "M10 15.27 16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" }) }, `star-${i}`);
+    });
+    return /* @__PURE__ */ jsx3("div", { className: "flex items-center", "aria-label": `${value} out of 5 stars`, children: stars });
+  };
+  return /* @__PURE__ */ jsxs3("div", { className: "min-h-screen bg-gradient-to-b from-white via-white to-slate-50 text-slate-800", children: [
+    /* @__PURE__ */ jsx3("header", { className: "sticky top-0 z-10 bg-white/70 backdrop-blur border-b border-slate-100", children: /* @__PURE__ */ jsxs3("div", { className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxs3("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsx3("div", { className: "h-8 w-8 rounded-full bg-gradient-to-br from-fuchsia-500 to-rose-500 shadow-sm", "aria-hidden": "true" }),
+        /* @__PURE__ */ jsx3("span", { className: "text-xl font-semibold tracking-tight", children: "SABO Salons" })
+      ] }),
+      /* @__PURE__ */ jsxs3("div", { className: "hidden md:flex items-center gap-3 text-sm text-slate-500", children: [
+        location ? /* @__PURE__ */ jsx3("span", { children: "Near you" }) : /* @__PURE__ */ jsx3("span", { children: "Enable location" }),
+        /* @__PURE__ */ jsx3("span", { className: "h-1 w-1 rounded-full bg-slate-300", "aria-hidden": "true" }),
+        /* @__PURE__ */ jsx3("span", { children: "Premium picks" })
+      ] })
+    ] }) }),
+    /* @__PURE__ */ jsx3("main", { className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8", children: /* @__PURE__ */ jsxs3("section", { className: "grid lg:grid-cols-12 gap-8 items-start", children: [
+      /* @__PURE__ */ jsx3("aside", { className: "lg:col-span-4 order-2 lg:order-1", children: /* @__PURE__ */ jsxs3("div", { className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-6", children: [
+        /* @__PURE__ */ jsxs3("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ jsx3("h2", { className: "text-lg font-semibold", children: "Filters" }),
+          /* @__PURE__ */ jsx3(
+            "button",
+            {
+              type: "button",
+              onClick: () => setFilters({ query: "", services: [], minRating: 0, maxDistanceKm: 10, priceLevel: null }),
+              className: "text-sm text-slate-500 hover:text-slate-900",
+              children: "Reset"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs3("div", { children: [
+          /* @__PURE__ */ jsx3("label", { htmlFor: "query", className: "block text-sm font-medium text-slate-700", children: "Search" }),
+          /* @__PURE__ */ jsx3(
+            "input",
+            {
+              id: "query",
+              name: "query",
+              type: "text",
+              value: filters.query,
+              onChange: (e) => setFilters((prev) => ({ ...prev, query: e.target.value })),
+              placeholder: "Salon name",
+              className: "mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 shadow-sm focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-100 outline-none"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs3("div", { children: [
+          /* @__PURE__ */ jsx3("p", { className: "text-sm font-medium text-slate-700", children: "Services" }),
+          /* @__PURE__ */ jsx3("div", { className: "mt-3 flex flex-wrap gap-2", children: allServices.map((svc) => {
+            const active = filters.services.includes(svc);
+            return /* @__PURE__ */ jsx3(
+              "button",
+              {
+                type: "button",
+                onClick: () => toggleService(svc),
+                className: `rounded-full px-3 py-1.5 text-sm border ${active ? "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-700" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"}`,
+                children: svc
+              },
+              svc
+            );
+          }) })
+        ] }),
+        /* @__PURE__ */ jsxs3("div", { className: "grid grid-cols-2 gap-4", children: [
+          /* @__PURE__ */ jsxs3("div", { children: [
+            /* @__PURE__ */ jsx3("label", { htmlFor: "rating", className: "block text-sm font-medium text-slate-700", children: "Min rating" }),
+            /* @__PURE__ */ jsx3(
+              "select",
+              {
+                id: "rating",
+                value: filters.minRating,
+                onChange: (e) => setFilters((prev) => ({ ...prev, minRating: Number(e.target.value) })),
+                className: "mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-100",
+                children: [0, 3, 4, 4.5].map((r) => /* @__PURE__ */ jsx3("option", { value: r, children: r === 0 ? "Any" : `${r}+` }, `r-${r}`))
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs3("div", { children: [
+            /* @__PURE__ */ jsx3("label", { htmlFor: "distance", className: "block text-sm font-medium text-slate-700", children: "Max distance" }),
+            /* @__PURE__ */ jsxs3(
+              "select",
+              {
+                id: "distance",
+                value: filters.maxDistanceKm ?? "",
+                onChange: (e) => {
+                  const val = e.target.value === "" ? null : Number(e.target.value);
+                  setFilters((prev) => ({ ...prev, maxDistanceKm: val }));
+                },
+                className: "mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-100",
+                children: [
+                  /* @__PURE__ */ jsx3("option", { value: "", children: "Any" }),
+                  [2, 5, 10, 20].map((km) => /* @__PURE__ */ jsxs3("option", { value: km, children: [
+                    km,
+                    " km"
+                  ] }, `d-${km}`))
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs3("div", { children: [
+            /* @__PURE__ */ jsx3("label", { htmlFor: "price", className: "block text-sm font-medium text-slate-700", children: "Price" }),
+            /* @__PURE__ */ jsxs3(
+              "select",
+              {
+                id: "price",
+                value: filters.priceLevel ?? "",
+                onChange: (e) => {
+                  const val = e.target.value === "" ? null : Number(e.target.value);
+                  setFilters((prev) => ({ ...prev, priceLevel: val }));
+                },
+                className: "mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-100",
+                children: [
+                  /* @__PURE__ */ jsx3("option", { value: "", children: "Any" }),
+                  [1, 2, 3, 4].map((p) => /* @__PURE__ */ jsx3("option", { value: p, children: "$".repeat(p) }, `p-${p}`))
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsx3("div", { className: "flex items-end", children: /* @__PURE__ */ jsx3(
+            "button",
+            {
+              type: "button",
+              onClick: () => void requestLocation(),
+              className: "w-full rounded-xl border border-slate-200 bg-white py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50",
+              children: loadingLocation ? "Locating\u2026" : "Use current location"
+            }
+          ) })
+        ] }),
+        error && /* @__PURE__ */ jsx3("div", { className: "rounded-xl border border-rose-200 bg-rose-50 text-rose-700 px-4 py-3 text-sm", children: error }),
+        !location && !loadingLocation && /* @__PURE__ */ jsx3("p", { className: "text-xs text-slate-500", children: "Enable location to see salons near you. You can also browse without it." })
+      ] }) }),
+      /* @__PURE__ */ jsx3("section", { className: "lg:col-span-8 order-1 lg:order-2", children: /* @__PURE__ */ jsxs3("div", { className: "grid gap-6", children: [
+        /* @__PURE__ */ jsxs3("div", { className: "relative rounded-2xl border border-slate-100 bg-gradient-to-br from-slate-50 to-slate-100 shadow-sm overflow-hidden", children: [
+          /* @__PURE__ */ jsxs3("div", { className: "p-4 flex items-center justify-between", children: [
+            /* @__PURE__ */ jsx3("h2", { className: "text-lg font-semibold", children: "Map" }),
+            /* @__PURE__ */ jsx3("span", { className: "text-xs text-slate-500", children: "Stylized preview" })
+          ] }),
+          /* @__PURE__ */ jsx3("div", { className: "h-56 w-full", children: /* @__PURE__ */ jsxs3("svg", { viewBox: "0 0 600 260", className: "h-full w-full", role: "img", "aria-label": "Map preview", children: [
+            /* @__PURE__ */ jsx3("defs", { children: /* @__PURE__ */ jsxs3("linearGradient", { id: "g", x1: "0", y1: "0", x2: "1", y2: "1", children: [
+              /* @__PURE__ */ jsx3("stop", { offset: "0%", stopColor: "#fafafa" }),
+              /* @__PURE__ */ jsx3("stop", { offset: "100%", stopColor: "#f1f5f9" })
+            ] }) }),
+            /* @__PURE__ */ jsx3("rect", { x: "0", y: "0", width: "600", height: "260", fill: "url(#g)" }),
+            /* @__PURE__ */ jsx3("path", { d: "M20 200 C120 160 200 220 300 180 S480 120 580 160", stroke: "#e2e8f0", strokeWidth: "8", fill: "none", strokeLinecap: "round" }),
+            /* @__PURE__ */ jsx3("path", { d: "M60 60 L540 60", stroke: "#e2e8f0", strokeWidth: "6", fill: "none", strokeLinecap: "round" }),
+            location && /* @__PURE__ */ jsxs3("g", { children: [
+              /* @__PURE__ */ jsx3("circle", { cx: 300, cy: 130, r: 8, fill: "#0ea5e9" }),
+              /* @__PURE__ */ jsx3("circle", { cx: 300, cy: 130, r: 16, fill: "#0ea5e9", opacity: "0.15" })
+            ] }),
+            salons.map(({ id, name, rating }, idx) => {
+              const angle = (idx + 1) * 0.9;
+              const radius = 40 + idx * 20;
+              const cx = 300 + Math.cos(angle) * radius;
+              const cy = 130 + Math.sin(angle) * radius;
+              const hot = rating >= 4.8;
+              return /* @__PURE__ */ jsxs3("g", { children: [
+                /* @__PURE__ */ jsx3("circle", { cx, cy, r: 7, fill: hot ? "#f43f5e" : "#a855f7" }),
+                /* @__PURE__ */ jsx3("text", { x: cx + 10, y: cy + 4, fontSize: "10", fill: "#334155", children: name })
+              ] }, id);
+            })
+          ] }) })
+        ] }),
+        /* @__PURE__ */ jsxs3("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ jsx3("h2", { className: "text-lg font-semibold", children: "Nearby Salons" }),
+          loadingSalons && /* @__PURE__ */ jsxs3("div", { className: "inline-flex items-center text-sm text-slate-500", role: "status", "aria-live": "polite", children: [
+            /* @__PURE__ */ jsx3("span", { className: "mr-2 h-3 w-3 border-2 border-slate-300 border-t-transparent rounded-full animate-spin", "aria-hidden": "true" }),
+            "Loading\u2026"
+          ] })
+        ] }),
+        !loadingSalons && salons.length === 0 && !error && /* @__PURE__ */ jsx3("div", { className: "rounded-2xl border border-slate-100 bg-white p-6 text-sm text-slate-600 shadow-sm", children: "No salons yet. Enable location or adjust filters." }),
+        !loadingSalons && filteredSalons.length === 0 && salons.length > 0 && /* @__PURE__ */ jsx3("div", { className: "rounded-2xl border border-slate-100 bg-white p-6 text-sm text-slate-600 shadow-sm", children: "No results match your filters." }),
+        /* @__PURE__ */ jsx3("ul", { role: "list", className: "grid sm:grid-cols-2 gap-6", children: filteredSalons.map(({ id, name, rating, distanceKm, priceLevel, services, address, isOpen }) => /* @__PURE__ */ jsxs3("li", { role: "listitem", className: "group rounded-2xl border border-slate-100 bg-white p-5 shadow-sm hover:shadow transition", children: [
+          /* @__PURE__ */ jsxs3("div", { className: "flex items-start justify-between gap-3", children: [
+            /* @__PURE__ */ jsxs3("div", { children: [
+              /* @__PURE__ */ jsx3("h3", { className: "text-base font-semibold group-hover:text-slate-900", children: name }),
+              /* @__PURE__ */ jsx3("p", { className: "text-xs text-slate-500", children: address })
+            ] }),
+            /* @__PURE__ */ jsx3("span", { className: `text-xs px-2 py-1 rounded-full ${isOpen ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-slate-50 text-slate-600 border border-slate-200"}`, children: isOpen ? "Open now" : "Closed" })
+          ] }),
+          /* @__PURE__ */ jsxs3("div", { className: "mt-3 flex items-center justify-between", children: [
+            /* @__PURE__ */ jsxs3("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ jsx3(Stars, { value: rating }),
+              /* @__PURE__ */ jsx3("span", { className: "text-sm text-slate-600", children: rating.toFixed(1) }),
+              /* @__PURE__ */ jsx3("span", { className: "text-slate-300", children: "\u2022" }),
+              /* @__PURE__ */ jsxs3("span", { className: "text-sm text-slate-600", children: [
+                distanceKm.toFixed(1),
+                " km"
+              ] })
+            ] }),
+            /* @__PURE__ */ jsx3("div", { className: "text-sm text-slate-600", children: "$".repeat(priceLevel) })
+          ] }),
+          /* @__PURE__ */ jsx3("div", { className: "mt-3 flex flex-wrap gap-2", children: services.map((svc) => /* @__PURE__ */ jsx3("span", { className: "text-xs px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 text-slate-700", children: svc }, `${id}-${svc}`)) }),
+          /* @__PURE__ */ jsxs3("div", { className: "mt-4 grid grid-cols-2 gap-3", children: [
+            /* @__PURE__ */ jsx3("button", { className: "rounded-xl bg-gradient-to-r from-fuchsia-600 to-rose-500 text-white text-sm font-medium py-2.5 shadow-sm hover:shadow", children: "View details" }),
+            /* @__PURE__ */ jsx3("button", { className: "rounded-xl border border-slate-200 bg-white text-slate-700 text-sm font-medium py-2.5 hover:bg-slate-50", children: "Book" })
+          ] })
+        ] }, id)) })
+      ] }) })
+    ] }) }),
+    /* @__PURE__ */ jsx3("footer", { className: "py-10 text-center text-xs text-slate-500", children: "Curated by SABO \u2014 fashion\u2011forward, trustworthy salon discovery." })
+  ] });
+}
+
+// App.tsx
+var SCREENS = {
+  UserAuthenticationScreen: (() => {
+    const module = user_authentication_screen_exports;
+    return module.default ?? Object.values(module).find((v) => typeof v === "function") ?? (() => React4.createElement("div", null, "No component export found"));
+  })(),
+  VirtualNailStyleTryOnScreen: (() => {
+    const module = virtual_nail_style_try_on_screen_exports;
+    return module.default ?? Object.values(module).find((v) => typeof v === "function") ?? (() => React4.createElement("div", null, "No component export found"));
+  })(),
+  BrowseLocalSalonsScreen: (() => {
+    const module = browse_local_salons_screen_exports;
+    return module.default ?? Object.values(module).find((v) => typeof v === "function") ?? (() => React4.createElement("div", null, "No component export found"));
+  })()
+};
+function FallbackScreen() {
+  return React4.createElement("div", {
+    className: "min-h-screen bg-gray-50 flex items-center justify-center"
+  }, React4.createElement("div", {
+    className: "text-center"
+  }, React4.createElement("p", {
+    className: "text-gray-600"
+  }, "No component available")));
+}
+function App() {
+  const [activeScreenIndex, setActiveScreenIndex] = useState4(0);
+  const screens = [{ "id": "screen-1", "name": "User Authentication Screen", "componentName": "UserAuthenticationScreen" }, { "id": "screen-2", "name": "Virtual Nail Style Try-On Screen", "componentName": "VirtualNailStyleTryOnScreen" }, { "id": "screen-3", "name": "Browse Local Salons Screen", "componentName": "BrowseLocalSalonsScreen" }];
+  const currentScreen = screens[activeScreenIndex];
+  const CurrentComponent = currentScreen ? SCREENS[currentScreen.componentName] : FallbackScreen;
+  const navigationButtons = screens.map(
+    (screen, index) => React4.createElement("button", {
+      key: screen.id,
+      onClick: () => setActiveScreenIndex(index),
+      className: `px-3 py-2 text-sm font-medium rounded-md transition-colors ${activeScreenIndex === index ? "bg-blue-100 text-blue-700" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"}`
+    }, screen.name)
+  );
+  return React4.createElement(
+    "div",
+    { className: "min-h-screen bg-gray-50" },
+    React4.createElement(
+      "nav",
+      { className: "bg-white shadow-sm border-b" },
+      React4.createElement(
+        "div",
+        { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+        React4.createElement(
+          "div",
+          { className: "flex justify-between items-center h-16" },
+          React4.createElement(
+            "div",
+            { className: "flex items-center" },
+            React4.createElement("h1", { className: "text-xl font-bold text-gray-900" }, "SABO AI-Native Beauty Commerce Platform 2")
+          ),
+          React4.createElement("div", { className: "flex space-x-1" }, ...navigationButtons)
+        )
+      )
+    ),
+    React4.createElement(
+      "div",
+      { className: "screen-container" },
+      React4.createElement(CurrentComponent)
+    )
+  );
+}
+var root = createRoot(document.getElementById("root"));
+root.render(React4.createElement(App));
+
+    </script>
+</body>
+</html>
